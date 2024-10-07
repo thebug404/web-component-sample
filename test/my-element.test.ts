@@ -1,5 +1,5 @@
 import { afterAll, expect, test } from 'vitest'
-import '../src/my-element'
+import '../src/my-element.js'
 
 const _delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -14,7 +14,7 @@ const appendElement = async (): Promise<HTMLElement> => {
 
 afterAll(() => {
   const $el = document.querySelector('my-element')
-  
+
   if (!$el) {
     return
   }
@@ -22,7 +22,7 @@ afterAll(() => {
   document.body.removeChild($el)
 })
 
-function getButton() {
+function getButton () {
   return document.querySelector('my-element')?.shadowRoot?.querySelector('.btn')
 }
 
@@ -32,7 +32,7 @@ test('should render the element', async () => {
   const $el = document.querySelector('my-element')
   expect($el).not.toBeNull()
   expect($el).to.have.property('counter', 0)
-  
+
   const $btn = getButton()
   expect($btn?.textContent).toBe('Counter is: 0')
 })
